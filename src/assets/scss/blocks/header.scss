@@ -9,7 +9,6 @@
   --b: 29%;
   display: flex;
   justify-content: space-between;
-
   &::before {
     content: '';
     border-image: 
@@ -22,17 +21,27 @@
     height: 7.6rem;
     clip-path: polygon(0 0, 100% 0, 100% 4rem, 0 4rem);
     pointer-events: none;
+    z-index: 10;
   }
 }
 
 .header-left {
   padding-top: 2.6rem;
   padding-right: 0;
+  transition: transform .3s;
 }
 
 .header-right {
   padding-top: 2.6rem;
   padding-left: 0;
+  transition: transform .3s;
+}
+
+.out {
+  .header-right,
+  .header-left {
+    transform: translate3d(0, -120%, 0);
+  }
 }
 
 .header-logo {
@@ -71,6 +80,4 @@
   
 }
 
-// .out {
-//   transform: translate3d(0, calc(-100% - 1rem), 0);
-// }
+

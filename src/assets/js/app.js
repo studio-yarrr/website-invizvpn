@@ -2,6 +2,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const xl = matchMedia('(max-width: 1024px)');
 
+  if (document && document.fonts) {
+    setTimeout(function () {
+      document.fonts.ready.then(function () {
+        setTimeout(function () {
+          initCount()
+          initArrow()
+        }, 100)
+
+        document.documentElement.classList.add('fontsloaded')
+      });
+    }, 0);
+  } else {
+    setTimeout(function () {
+      initCount()
+      initArrow()
+    }, 100)
+    document.documentElement.classList.add('fontsloaded')
+  }
+
+  window.addEventListener('load', function () {
+    if (!xl.matches) {
+      initRotationCards()
+    }
+  })
+
+  function initRotationCards() {
+    const rotationCards = document.querySelectorAll(".rotation-card");
+
+    rotationCards.forEach(card => {
+      let isEntered = false;
+      const panelContainer = card.querySelector(".panel-container");
+      card.addEventListener('mousemove', throttle(function (event) { transformPanel(event, card, panelContainer) }, 150));
+      card.addEventListener('mouseenter', () => handleMouseEnter(panelContainer));
+      card.addEventListener('mouseleave', () => { handleMouseLeave(panelContainer) });
+
+      function transformPanel(mouseEvent, card, panelContainer) {
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const mouseX = mouseEvent.clientX;
+        const mouseY = mouseEvent.clientY;
+        const percentX = (mouseX - centerX) / (rect.width / 2);
+        const percentY = -((mouseY - centerY) / (rect.height / 2));
+        const transformAmount = 3;
+
+        if (isEntered) {
+          panelContainer.style.transform = `perspective(50rem) rotateY(${percentX * transformAmount}deg) rotateX(${percentY * transformAmount}deg)`;
+        } else {
+          panelContainer.style.transform = 'perspective(50rem) rotateY(0deg) rotateX(0deg)';
+        }
+      }
+
+      function handleMouseEnter(panelContainer) {
+        isEntered = true
+        panelContainer.style.transition = '';
+      }
+
+      function handleMouseLeave(panelContainer) {
+        isEntered = false
+        panelContainer.style.transform = 'perspective(50rem) rotateY(0deg) rotateX(0deg)';
+      }
+
+    });
+
+
+  }
+
   class Menu {
     constructor(menuElement, buttonElement) {
       this.menu = typeof menuElement === "string" ? document.querySelector(menuElement) : menuElement;
@@ -183,6 +250,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return wrapper;
   }
+
+  const arrowsAnimations = document.querySelectorAll('.arrows-animation');
+  const numberOfArrow = 20;
+
+  if (arrowsAnimations.length) {
+    arrowsAnimations.forEach(el => {
+      for(let i=0; i<numberOfArrow; i++) {
+        const arrow = document.createElement('div')
+        arrow.classList.add('arrow')
+        const arrowInner = document.createElement('div')
+        arrowInner.classList.add('arrow-inner')
+        arrow.appendChild(arrowInner)
+        el.appendChild(arrow)
+      }
+    })
+  }
+
+
+
+  
+  function initArrow() {
+    const arrowsWrapper = document.querySelector('.arrows-wrapper');
+    const arrows = document.querySelectorAll('.arrow');
+    const wrapperBounds = arrowsWrapper.getBoundingClientRect();  
+    // Function to update opacity based on position
+    function updateOpacity(arrow) {
+      const arrowBounds = arrow.getBoundingClientRect();
+      const midPoint = wrapperBounds.left + wrapperBounds.width / 2;
+      const distanceToMid = Math.abs(midPoint - (arrowBounds.left + arrowBounds.width / 2));
+      const maxDistance = wrapperBounds.width / 2;
+      arrow.style.opacity = 1 - distanceToMid / maxDistance;
+    }
+    gsap.to(".arrows-animation", {
+      xPercent: 100,
+      ease: "none",
+      repeat: -1,
+      lazy: true,
+      duration: 15,
+      onUpdate: () => arrows.forEach(updateOpacity) // Update opacity during animation
+    });
+  }
+
+
+  const numbers = document.querySelectorAll('.numbers-item')
+  if (numbers.length) {
+    numbers.forEach(el=> {
+      const wrap = document.createElement('span')
+      wrap.classList.add('number-wrap')
+      for(let i=0;i<=9;i++) {
+        wrap.insertAdjacentHTML('beforeend', `<span>${i}</span>`)
+      }
+      el.appendChild(wrap)
+    })
+  }
+
+  function initCount() {
+    const numbersWrapper = document.querySelector('.numbers-wrapper')
+
+    if (numbersWrapper) {
+      const numbers = numbersWrapper.querySelectorAll('.numbers-item')
+      if (numbers.length) {
+        [...numbers].reverse().forEach((el, i) => {
+          const number = el.dataset.count
+          const wrap = el.querySelector('.number-wrap');
+          const h = 8.4;
+          if (wrap) {
+            // wrap.style.setProperty('transform', `translate3d(0, ${'-' + h * number + 'rem'}, 0)`)
+            gsap.to(wrap, {
+              y: '-' + h * number + 'rem',
+              lazy: true,
+              duration: 1,
+              ease: 'elastic',
+            })
+          }
+        })
+      }
+    }
+  }
+
 });
 
 
