@@ -92,7 +92,11 @@ svg {
     padding-right: 10.8rem;
     padding-left: 10.8rem;
   }
+}
 
+.container-4 {
+  padding-left: 22.4rem;
+  padding-right: 22.4rem;
 }
 
 .img-contain {
@@ -196,3 +200,71 @@ svg {
 /* Blocks */
 
 @import "importsBlocks";
+
+[data-animonscroll="scale"] {
+  transform: scale3d(0.5, 0.5, 0.5);
+  will-change: transform;
+  transition: transform .4s;
+
+  @include breakpoint($xl-bp) {
+    transform: none;
+  }
+}
+
+[data-animonscroll="opacity"] {
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity .4s;
+
+  @include breakpoint($xl-bp) {
+    opacity: 1;
+  }
+}
+
+[data-animonscroll="left"] {
+  transform: translate3d(-2rem, 0, 0);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform .4s, opacity .4s;
+
+  @include breakpoint($xl-bp) {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+[data-animonscroll="right"] {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform .4s, opacity .4s;
+
+  @include breakpoint($xl-bp) {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+[data-animonscroll="bottom"] {
+  transform: translate3d(0, 2rem, 0);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform .4s, opacity .4s;
+
+  @include breakpoint($xl-bp) {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+[data-animonscroll="bottom"].loaded,
+[data-animonscroll="right"].loaded,
+[data-animonscroll="left"].loaded,
+[data-animonscroll="opacity"].loaded {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+[data-animonscroll="scale"].loaded {
+  transform: scale3d(1, 1, 1);
+}

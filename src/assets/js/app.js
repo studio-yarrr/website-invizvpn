@@ -1,3 +1,5 @@
+//= components/
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const xl = matchMedia('(max-width: 1024px)');
@@ -111,18 +113,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     disableScroll() {
-        // Get the current page scroll position;
-        const scrollTop = window.pageYOffset  || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset  || document.documentElement.scrollLeft;
-      
-            // if any scroll is attempted, set this to the previous value;
-            window.onscroll = function() {
-                window.scrollTo(scrollLeft, scrollTop);
-            };
+      // Get the current page scroll position;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      // if any scroll is attempted, set this to the previous value;
+      window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+      };
     }
 
     enableScroll() {
-      window.onscroll = function() {};
+      window.onscroll = function () { };
     }
   }
 
@@ -252,11 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const arrowsAnimations = document.querySelectorAll('.arrows-animation');
-  const numberOfArrow = 20;
+  const numberOfArrow = 30;
 
   if (arrowsAnimations.length) {
     arrowsAnimations.forEach(el => {
-      for(let i=0; i<numberOfArrow; i++) {
+      for (let i = 0; i < numberOfArrow; i++) {
         const arrow = document.createElement('div')
         arrow.classList.add('arrow')
         const arrowInner = document.createElement('div')
@@ -269,16 +271,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  
+
   function initArrow() {
     const arrowsWrapper = document.querySelector('.arrows-wrapper');
     const arrows = document.querySelectorAll('.arrow');
-    const wrapperBounds = arrowsWrapper.getBoundingClientRect();  
+    const wrapperBounds = arrowsWrapper.getBoundingClientRect();
     // Function to update opacity based on position
     function updateOpacity(arrow) {
       const arrowBounds = arrow.getBoundingClientRect();
       const midPoint = wrapperBounds.left + wrapperBounds.width / 2;
-      const distanceToMid = Math.abs(midPoint - (arrowBounds.left + arrowBounds.width / 2));
+      const distanceToMid = Math.abs(midPoint - ((arrowBounds.left + arrowBounds.right) / 2 + arrowBounds.width / 2));
       const maxDistance = wrapperBounds.width / 2;
       arrow.style.opacity = 1 - distanceToMid / maxDistance;
     }
@@ -287,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "none",
       repeat: -1,
       lazy: true,
-      duration: 15,
+      duration: 30,
       onUpdate: () => arrows.forEach(updateOpacity) // Update opacity during animation
     });
   }
@@ -295,15 +297,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const numbers = document.querySelectorAll('.numbers-item')
   if (numbers.length) {
-    numbers.forEach(el=> {
+    numbers.forEach(el => {
       const wrap = document.createElement('span')
       wrap.classList.add('number-wrap')
-      for(let i=0;i<=9;i++) {
+      for (let i = 0; i <= 9; i++) {
         wrap.insertAdjacentHTML('beforeend', `<span>${i}</span>`)
       }
       el.appendChild(wrap)
     })
   }
+
+  let comp = false
 
   function initCount() {
     const numbersWrapper = document.querySelector('.numbers-wrapper')
@@ -316,18 +320,192 @@ document.addEventListener("DOMContentLoaded", () => {
           const wrap = el.querySelector('.number-wrap');
           const h = 8.4;
           if (wrap) {
-            // wrap.style.setProperty('transform', `translate3d(0, ${'-' + h * number + 'rem'}, 0)`)
             gsap.to(wrap, {
               y: '-' + h * number + 'rem',
               lazy: true,
-              duration: 1,
+              duration: 1.5,
+              delay: 0.3 + i * 0.1,
               ease: 'elastic',
+              onComplete: () => {
+                comp = true
+              }
             })
           }
         })
       }
     }
   }
+
+  gsap.registerPlugin(ScrollTrigger);
+  const elem = document.querySelector('.numbers-wrapper')
+  const trigger = document.querySelector('.scrolltrigger-ends')
+  let calcheight = getCoords(trigger).top + trigger.getBoundingClientRect().height - getCoords(elem).top - elem.getBoundingClientRect().height
+
+
+
+  window.addEventListener('resize', function () {
+    // location.reload()
+  })
+
+  // gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: elem,
+  //     start: () =>
+  //       `bottom 79%`,
+  //     end: () => `${calcheight}px 79%`,
+  //     pin: true,
+  //     anticipatePin: 1,
+  //     scrub: 0.5,
+  //   }
+  // })
+  // .add('start')
+  // .to('.numbers-item', {
+  //   height: '10.4rem',
+  // }, 'start')
+  // .to('.number-wrap span', {
+  //   color: '#B0E3FC',
+  //   fontSize: '8rem',
+  //   y: '1rem', 
+  // }, 'start')
+
+  // gsap.to(elem, {
+  //   scrollTrigger: {
+  //     trigger: elem,
+  //     start: () =>
+  //       `bottom 79%`,
+  //     end: () => `${calcheight}px 79%`,
+  //     scrub: 1,
+  //   },
+  //   duration: 1,
+  //   y: calcheight,
+  //   ease: "none"
+  // })
+
+  const numbers2 = document.querySelectorAll('.numbers-item')
+  const secondNumbers = document.querySelectorAll('.number-wrap span')
+
+  const startColor = "#DEFABD";
+  const endColor = '#B0E3FC';
+  const startRed = parseInt(startColor.slice(1, 3), 16);
+  const startGreen = parseInt(startColor.slice(3, 5), 16);
+  const startBlue = parseInt(startColor.slice(5, 7), 16);
+  const endRed = parseInt(endColor.slice(1, 3), 16);
+  const endGreen = parseInt(endColor.slice(3, 5), 16);
+  const endBlue = parseInt(endColor.slice(5, 7), 16);
+
+  function animateColor(progress) {
+    let result1 = progress * endRed + (1 - progress) * startRed
+    let result2 = progress * endGreen + (1 - progress) * startGreen
+    let result3 = progress * endBlue + (1 - progress) * startBlue
+    var interpolatedColor = "#" + Math.round(result1).toString(16) + Math.round(result2).toString(16) + Math.round(result3).toString(16);
+    return interpolatedColor;
+  }
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: elem,
+      invalidateOnRefresh: true,
+      start: () =>
+        `bottom 79%`,
+      end: () => `${calcheight}px 79%`,
+      scrub: 1,
+      onUpdate: (h) => {
+
+        result = h.progress * 10.4 + (1 - h.progress) * 8.4
+        result2 = h.progress * 8 + (1 - h.progress) * 4.8
+        const color = animateColor(h.progress)
+        if (numbers2.length) {
+          numbers2.forEach(el => {
+            el.style.height = result + 'rem'
+            el.style.fontSize = result2 + 'rem'
+            el.style.color = color
+          })
+        }
+
+        result3 = h.progress * 1 + (1 - h.progress) * 0
+        if (secondNumbers.length) {
+          secondNumbers.forEach(el => {
+            el.style.setProperty('transform', `translate3d(0, ${result3}rem, 0`)
+          })
+        }
+
+      },
+    },
+  })
+    .to(elem, {
+      duration: 5,
+      y: calcheight,
+      ease: "none",
+    })
+
+
+  function getCoords(elem) { // crossbrowser version
+    var box = elem.getBoundingClientRect();
+
+    var body = document.body;
+    var docEl = document.documentElement;
+
+    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    var clientTop = docEl.clientTop || body.clientTop || 0;
+    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    var top = box.top + scrollTop - clientTop;
+    var left = box.left + scrollLeft - clientLeft;
+
+    return { top: Math.round(top), left: Math.round(left) };
+  }
+
+  const callback = (entries) => {
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('loaded')
+      } else {
+        entry.target.classList.remove('loaded')
+      }
+    })
+
+  };
+
+
+  const observer = new IntersectionObserver(callback, { rootMargin: '-50px' });
+
+  setTimeout(() => {
+
+    const target = document.querySelectorAll('[data-animonscroll]');
+    if (target.length) {
+      target.forEach(el => {
+        if (xl.matches) {
+          el.classList.add('loaded')
+        } else {
+          observer.observe(el);
+        }
+      })
+    }
+
+    
+    const swiper = document.querySelector('.tarifs-swiper')
+
+    if (swiper) {
+      const swiperslides = swiper.querySelectorAll('.swiper-slide')
+      if (swiperslides.length <=3) {
+        swiper.classList.add('swiper-no-swiping')
+      }
+      new Swiper(swiper, {
+        slidesPerView: 3,
+        centeredSlides: true,
+        initialSlide: 1,
+        spaceBetween: 20,
+      }) 
+    }
+
+
+
+
+  }, 0)
+
 
 });
 
