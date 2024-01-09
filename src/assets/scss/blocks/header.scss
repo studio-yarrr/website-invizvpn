@@ -5,8 +5,6 @@
   left: 0;
   z-index: 20;
   padding-top: 1.2rem;
-  --r: 3rem; /* control the inner radius */
-  --b: 29%;
   display: flex;
   justify-content: space-between;
   &::before {
@@ -23,18 +21,53 @@
     pointer-events: none;
     z-index: 10;
   }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 90rem;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    border-width: 1.3rem;
+    border-style: solid;
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        #2B363A, 
+        rgba(0, 0, 0, 0)
+      ) 1 100%;
+    border-top: 0;
+    border-bottom: 0;
+    pointer-events: none;
+    @include breakpoint($xl-bp) {
+      border-width: 1.2rem;
+    }
+  }
+}
+
+.header-btn {
+  transition: opacity .3s, color .3s, background-color .3s;
 }
 
 .header-left {
   padding-top: 2.6rem;
   padding-right: 0;
   transition: transform .3s;
+  @include breakpoint($xl-bp) {
+    padding-left: 2.3rem;
+    padding-top: 1.8rem;
+  }
 }
 
 .header-right {
   padding-top: 2.6rem;
   padding-left: 0;
   transition: transform .3s;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
 
 .out {
@@ -55,6 +88,12 @@
   display: inline-block;
   padding-right: 1.45rem;
   width: 20.1rem;
+  @include breakpoint($xl-bp) {
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 15.5rem;
+    padding-right: 0;
+  }
   &::before {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='84' height='44' viewBox='0 0 84 44' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.968752 1.38987C1.45842 1.14056 2.01274 1 2.59988 1H79.3999C81.3881 1 82.9999 2.61177 82.9999 4.6V39.4C82.9999 41.3882 81.3881 43 79.3999 43H2.59988C2.01274 43 1.45842 42.8594 0.96875 42.6101C1.70228 43.4612 2.78816 44 3.99988 44H79.9999C82.209 44 83.9999 42.2091 83.9999 40V4C83.9999 1.79086 82.209 0 79.9999 0H3.99988C2.78816 0 1.70228 0.53879 0.968752 1.38987Z' fill='%23B0E3FC'/%3E%3C/svg%3E%0A");
@@ -66,6 +105,10 @@
     position: absolute;
     right: 0;
     top: -0.2rem;
+    @include breakpoint($xl-bp) {
+      height: 3.4rem;
+      width: 7rem;
+    }
   }
 }
 
@@ -77,6 +120,10 @@
   font-weight: 600;
   line-height: normal;
   margin-left: 0.1rem;
+  @include breakpoint($xl-bp) {
+    font-size: 2.5rem;
+    margin-left: 0;
+  }
   
 }
 

@@ -19,7 +19,7 @@ html {
   }
 
   @include breakpoint($sm-bp) {
-    font-size: calc(100vw / 375 * 10);
+    font-size: calc(100vw / 320 * 10);
   }
 }
 
@@ -38,26 +38,6 @@ body {
   background-color: var(--black);
   position: relative;
   color: var(--white);
-  &::after {
-    content: '';
-    width: 100%;
-    height: 90rem;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    border-width: 1.2rem;
-    border-style: solid;
-    border-image: 
-      linear-gradient(
-        to bottom, 
-        #2B363A, 
-        rgba(0, 0, 0, 0)
-      ) 1 100%;
-    border-top: 0;
-    border-bottom: 0;
-    pointer-events: none;
-  }
 }
 
 img {
@@ -92,11 +72,19 @@ svg {
     padding-right: 10.8rem;
     padding-left: 10.8rem;
   }
+  @include breakpoint($xl-bp) {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
 }
 
 .container-4 {
   padding-left: 22.4rem;
   padding-right: 22.4rem;
+  @include breakpoint($cos-bp) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .img-contain {
@@ -195,6 +183,33 @@ svg {
 
 .text-blue {
   color: var(--blue);
+}
+
+.first-opacity {
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity .3s;
+  @include breakpoint($xl-bp) {
+    opacity: 1;
+  }
+}
+
+.xl-block {
+  display: none;
+  @include breakpoint($xl-bp) {
+    display: block
+  }
+}
+.xl-inline {
+  display: none;
+  @include breakpoint($xl-bp) {
+    display: inline;
+  }
+}
+.xl-hidden {
+  @include breakpoint($xl-bp) {
+    display: none;
+  } 
 }
 
 /* Blocks */

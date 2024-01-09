@@ -1,0 +1,219 @@
+.footer {
+  margin-top: 9.7rem;
+  background-color: #283236;
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+  &>* {
+    position: relative;
+    padding-left: 4.8rem;
+    &::before {
+      content: '';
+      height: 5.2rem;
+      width: 0.2rem;
+      border-radius: 0.4rem;
+      opacity: 0.12;
+      background: #FFF;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+    }
+    &:first-child {
+      padding-left: 0;
+      &::before {
+        content: normal;
+      }
+    }
+  }
+
+  &::before {
+    content: '';
+    border-image:
+      radial-gradient(#0000 calc(71% - var(--b)), #273134 calc(72% - var(--b))) 49.9%/var(--r);
+    position: absolute;
+    bottom: calc(100% - 1.2rem);
+    left: 0;
+    width: 100%;
+    height: 7.6rem;
+    clip-path: polygon(0 0, 100% 0, 100% 4rem, 0 4rem);
+    pointer-events: none;
+    z-index: 10;
+    transform: rotate(-180deg);
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 20rem;
+    position: absolute;
+    z-index: 10;
+    top: -22.8rem;
+    left: 0;
+    border-width: 1.2rem;
+    border-style: solid;
+    border-image:
+      linear-gradient(to top,
+        #273134,
+        rgba(0, 0, 0, 0),
+      ) 1 100%;
+    border-top: 0;
+    border-bottom: 0;
+    pointer-events: none;
+  }
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.footer-logo {
+  color: var(--white);
+  font-family: Montserrat Alternates;
+  font-size: 2.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: relative;
+  display: inline-block;
+  width: 16.1rem;
+
+  &::before {
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg width='84' height='44' viewBox='0 0 84 44' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.968752 1.38987C1.45842 1.14056 2.01274 1 2.59988 1H79.3999C81.3881 1 82.9999 2.61177 82.9999 4.6V39.4C82.9999 41.3882 81.3881 43 79.3999 43H2.59988C2.01274 43 1.45842 42.8594 0.96875 42.6101C1.70228 43.4612 2.78816 44 3.99988 44H79.9999C82.209 44 83.9999 42.2091 83.9999 40V4C83.9999 1.79086 82.209 0 79.9999 0H3.99988C2.78816 0 1.70228 0.53879 0.968752 1.38987Z' fill='%23B0E3FC'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    width: 8.3rem;
+    height: 3.6rem;
+    position: absolute;
+    right: 0;
+    top: -0.2rem;
+  }
+}
+
+.footer-name {
+  color: var(--blue);
+  font-family: Montserrat;
+  font-size: 2.6rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-left: 0.1rem;
+
+}
+
+.footer-nav {
+  color: var(--white);
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6rem;
+  /* 114.286% */
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+
+    &:first-child {
+      &::before {
+        content: normal;
+      }
+    }
+
+    &::before {
+      content: '';
+      border-radius: 0.4rem;
+      opacity: 0.12;
+      background: var(--white);
+      height: 3.2rem;
+      width: 0.1rem;
+      display: inline-block;
+    }
+  }
+}
+
+.footer-link {
+  transition: color .3s, opacity .3s;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--yellow);
+    }
+  }
+}
+
+.footer-telegrams {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.footer-telegram {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2rem;
+}
+
+.telegram-img {
+  width: 3.2rem;
+  height: 3.2rem;
+  grid-row: 2 span;
+}
+
+.telegram-top {
+  color: #FFF;
+  font-family: Montserrat Alternates;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4rem;
+  /* 116.667% */
+  opacity: 0.4;
+}
+
+.telegram-link {
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2rem;
+  /* 142.857% */
+  text-decoration-line: underline;
+  text-decoration-skip-ink: none;
+}
+
+.footer-info {
+  color: rgba($color: #FFFFFF, $alpha: 0.4);
+  text-align: right;
+  font-family: Montserrat Alternates;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4rem;
+  /* 116.667% */
+}

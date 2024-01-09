@@ -5,6 +5,11 @@
   position: relative;
   width: 88rem;
   margin-right: 1rem;
+
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -32,20 +37,24 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+
   ul {
     display: flex;
     align-items: center;
     gap: 3.2rem;
   }
+
   li {
     display: flex;
     align-items: center;
     gap: 3.2rem;
+
     &:first-child {
       &::before {
         content: normal;
       }
     }
+
     &::before {
       content: '';
       border-radius: 0.4rem;
@@ -67,48 +76,51 @@
 }
 
 .menu-button {
-  width: 4rem;
-  height: 3.4rem;
-  background-color: transparent;
-  border: 0;
-
-  z-index: 4;
   display: none;
-  position: relative;
+
+  @include breakpoint($xl-bp) {
+    display: block;
+    width: 3.2rem;
+    height: 2.2rem;
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    z-index: 4;
+  }
+
   .burger-button-close {
+
     #first-line-burger,
     #second-line-burger,
     #third-line-burger {
-        width: 100%;
-        height: 0.2rem;
-        border-radius: 0.1rem;
-        background-color: black;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        transform-origin: center center;
-        transition: transform 0.4s ease, opacity 0.4s ease;
+      width: 100%;
+      height: 0.2rem;
+      border-radius: 0.1rem;
+      background-color: var(--blue);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform-origin: center center;
+      transition: all .3s;
     }
 
     #first-line-burger {
-        top: 0%;
+      top: 0%;
     }
+
+    #second-line-burger {
+      transform: translate3d(0, -50%, 0);
+      width: 2.4rem;
+    }
+
     #third-line-burger {
-        top: unset;
-        bottom: 0%;
+      top: unset;
+      bottom: 0%;
+      width: 1.6rem;
+      background-color: var(--yellow);
     }
   }
-  @include breakpoint($xl-bp) {
-    display: block;
-    margin-left: 3rem;
-  }
-  @include breakpoint($sm-bp) {
-    margin-left: 0;
-    width: 2rem;
-    height: 2rem;
-    margin-right: 0.5rem;
-  }
+
 }
 
 .header__menu-button--active,
@@ -116,24 +128,31 @@
   .burger-button-close {
     #first-line-burger {
       top: 50%;
+      left: 50%;
       transform: translateX(-50%) rotate(45deg);
+      width: 3.2rem;
+      background-color: var(--yellow);
     }
+
     #second-line-burger {
-      transform: translateX(100%);
+      transform: translateX(1rem);
+      left: 50%;
       opacity: 0;
+      background-color: var(--yellow);
     }
+
     #third-line-burger {
       top: 50%;
+      left: 50%;
       bottom: 0;
       transform: translateX(-50%) rotate(-45deg);
+      width: 3.2rem;
     }
   }
 }
 
 
-.menu-button--active {
-
-}
+.menu-button--active {}
 
 .overlay {
   position: absolute;
@@ -143,10 +162,37 @@
 }
 
 .menu-link {
-  transition: color .3s;
+  transition: color .3s, opacity .3s;
+
   @media (hover: hover) and (pointer: fine) {
-  &:hover {
-    color: var(--yellow);
+    &:hover {
+      color: var(--yellow);
+    }
   }
+}
+
+.menu-button-wrapper {
+  display: none;
+
+  @include breakpoint($xl-bp) {
+    display: flex;
+    padding-right: 1.8rem;
+    padding-top: 2rem;
+    padding-bottom: 2.2rem;
+    padding-left: 1.8rem;
+    position: relative;
+    &::before {
+      content: '';
+      background-image: url("data:image/svg+xml,%3Csvg width='160' height='64' viewBox='0 0 160 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.1874 0.00012207C-56.51 0.00012207 160 0 160 0L160 64.0001H100.885C92.0483 64.0001 84.7469 56.7768 82.4896 48.2334C77.4824 29.2827 62.0084 0.00012207 14.1874 0.00012207Z' fill='%232B363A'/%3E%3C/svg%3E%0A");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right top;
+      width: 16rem;
+      height: 6.4rem;
+      position: absolute;
+      top: 0;
+      right: -1rem;
+
+    }
   }
 }

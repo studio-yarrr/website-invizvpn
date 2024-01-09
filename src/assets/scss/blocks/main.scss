@@ -6,6 +6,11 @@
   grid-template-columns: 48.3rem 63.5rem;
   justify-content: space-between;
   padding-bottom: 9.6rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10.5rem;
+  }
 }
 
 .main-bg {
@@ -41,13 +46,19 @@
 
 .main-left {
   padding-left: 5rem;
+  @include breakpoint($xl-bp) {
+    padding-left: 1.6rem;
+  }
 }
 
 .main-text {
   padding-top: 3rem;
   padding-bottom: 3rem;
   position: relative;
-
+  @include breakpoint($xl-bp) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   &::before {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='386' height='234' viewBox='0 0 386 234' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='300' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect y='58' width='301' height='3' fill='url(%23paint0_linear_48_2123)'/%3E%3Crect x='300' y='233' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect x='300' y='234' width='234' height='1.00001' rx='0.500005' transform='rotate(-90 300 234)' fill='%23585858'/%3E%3Crect x='296.5' y='55.5' width='8' height='8' rx='2.5' fill='%230A0A0A' stroke='%23585858'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_48_2123' x1='0' y1='58' x2='300.998' y2='61.2097' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232B363A'/%3E%3Cstop offset='1' stop-color='%23585858'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
@@ -58,18 +69,22 @@
     position: absolute;
     width: 38.6rem;
     left: -35.3rem;
-
     @include breakpoint($cos-bp) {
       background-image: url("data:image/svg+xml,%3Csvg width='182' height='234' viewBox='0 0 182 234' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='96' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect y='58' width='97' height='3' fill='url(%23paint0_linear_48_1856)'/%3E%3Crect x='96' y='233' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect x='96' y='234' width='234' height='1.00001' rx='0.500005' transform='rotate(-90 96 234)' fill='%23585858'/%3E%3Crect x='92.5' y='55.5' width='8' height='8' rx='2.5' fill='%230A0A0A' stroke='%23585858'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_48_1856' x1='0' y1='58' x2='97.0092' y2='58.3334' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232B363A'/%3E%3Cstop offset='1' stop-color='%23585858'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
       left: -14.6rem;
       width: 18.2rem;
-
+    }
+    @include breakpoint($xl-bp) {
+      content: normal;
     }
   }
 }
 
 .animate-text {
   overflow: hidden;
+  @include breakpoint($xl-bp) {
+    overflow: visible;
+  }
 }
 
 .main-title {
@@ -80,6 +95,23 @@
   line-height: normal;
   transform: translate3d(0, 100%, 0);
   transition: transform .4s;
+  position: relative;
+  @include breakpoint($xl-bp) {
+    font-size: 2.4rem;
+    transform: translate3d(0, 0, 0); 
+    padding-left: 1.5rem;
+    &::before {
+      content: '';
+      background-image: url("data:image/svg+xml,%3Csvg width='291' height='74' viewBox='0 0 291 74' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='52' y='74' width='48' height='0.999996' rx='0.499998' transform='rotate(-180 52 74)' fill='%23585858'/%3E%3Crect x='291' y='6' width='289' height='3.00003' transform='rotate(180 291 6)' fill='url(%23paint0_linear_48_2696)'/%3E%3Crect x='5' y='3' width='71' height='0.999997' rx='0.499998' transform='rotate(90 5 3)' fill='%23585858'/%3E%3Crect x='8.5' y='0.5' width='8' height='8' rx='2.5' transform='rotate(90 8.5 0.5)' fill='%230A0A0A' stroke='%23585858'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_48_2696' x1='580' y1='6.00007' x2='291' y2='6.00006' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23585858'/%3E%3Cstop offset='1' stop-color='%232B363A'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: -2rem;
+      left: -1rem;
+      width: 29.1rem;
+      height: 7.4rem;
+    }
+  }
 }
 
 .fontsloaded {
@@ -96,12 +128,6 @@
   }
 }
 
-.first-opacity {
-  opacity: 0;
-  will-change: opacity;
-  transition: opacity .3s;
-}
-
 .main-desc {
   font-family: Montserrat Alternates;
   font-size: 1.6rem;
@@ -112,12 +138,22 @@
 
   max-width: 43.3rem;
   margin-top: 2.4rem;
+  @include breakpoint($xl-bp) {
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    margin-top: 4.1rem;
+  }
 }
 
 .main-btns {
   margin-top: 6.4rem;
   display: flex;
   gap: 2rem;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+    margin-top: 2.4rem;
+    gap: 1.2rem;
+  }
 }
 
 .main-btn-2,
@@ -127,6 +163,22 @@
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   border-radius: 1.6rem;
+  transition: opacity .3s, background-color .3s, color .3s;
+  @include breakpoint($xl-bp) {
+    padding: 1.3rem 2.3rem;
+    width: max-content;
+    max-width: 100%;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+}
+
+.main-btn-2 {
+  @include breakpoint($xl-bp) {
+    font-weight: 500;
+  }
 }
 
 .main-right {
@@ -136,7 +188,12 @@
   margin-right: 5.5rem;
   position: relative;
   background-color: rgba($color: #0A0A0A, $alpha: 0.6);
-
+  @include breakpoint($xl-bp) {
+    margin-right: 0;
+    margin-top: 4rem;
+    padding: 1.3rem;
+    border-radius: 3.2rem;
+  }
   &::before {
     content: " ";
     position: absolute;
@@ -164,6 +221,10 @@
   -moz-box-shadow: rgba(222, 250, 189, 0.1) 0 0 1rem 3rem;
   -webkit-box-shadow: rgba(222, 250, 189, 0.1) 0 0 1rem 3rem;
   box-shadow: rgba(222, 250, 189, 0.1) 0 0 1rem 3rem;
+  @include breakpoint($xl-bp) {
+    padding: 1.5rem;
+    border-radius: 2.3rem;
+  }
 }
 
 .main-two {
@@ -183,6 +244,9 @@
   /* 168.75% */
   width: 100%;
   margin-bottom: -2rem;
+  @include breakpoint($xl-bp) {
+    font-size: 1.4rem;
+  }
 }
 
 .main-p-2 {
@@ -194,6 +258,9 @@
   line-height: 1;
   /* 100% */
   margin-left: -1.5rem;
+  @include breakpoint($xl-bp) {
+    font-size: 12rem;
+  }
 }
 
 .main-p-3 {
@@ -209,6 +276,9 @@
   margin-left: -2rem;
   margin-top: auto;
   margin-bottom: 2rem;
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+  }
 }
 
 .main-p-4 {
@@ -225,6 +295,13 @@
   border-radius: 0.8rem;
   background: #DEFABD;
   padding: 0.8rem 1.2rem;
+  @include breakpoint($xl-bp) {
+    font-size: 1.4rem;
+    padding: 0.2rem 1.6rem;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 3.5rem;
+  }
 }
 
 .main-block-bg {
@@ -234,6 +311,9 @@
   z-index: 1;
   width: 48.2rem;
   height: 100%;
+  @include breakpoint($xl-bp) {
+    width: 100%;
+  }
 }
 
 .main-bot {
@@ -250,6 +330,9 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
 
 .main-user {
@@ -411,6 +494,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 
   span {
     display: block;
@@ -421,7 +506,6 @@
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
     transform-origin: 0% 0;
-    filter: blur(.0px);
     transition: opacity .3s;
   }
 }
@@ -459,6 +543,7 @@
   border-radius: 100%;
   animation: rotate 3s linear infinite;
   pointer-events: none;
+
   &::before {
     content: '';
     border-radius: inherit;
@@ -480,7 +565,9 @@
   height: 164.0979rem;
   border: 0.3rem solid #E0F5FF;
   animation: rotate 3s linear infinite;
-
+  @include breakpoint($cos-bp) {
+    left: -13rem;
+  }
   &::before {
     border: 1.2rem solid #A890F1;
   }
@@ -494,7 +581,9 @@
   border: 0.3rem solid #E0F5FF;
   opacity: 0.24;
   animation: rotate 4s linear infinite;
-
+  @include breakpoint($cos-bp) {
+    left: -21rem;
+  }
   &::before {
     border: 1.2rem solid #A890F1;
     opacity: 0.4;
@@ -503,7 +592,7 @@
 
 .circle-3 {
   top: -92.5rem;
-  left: -7rem;
+  left: -26rem;
   width: 189.5rem;
   height: 190.5rem;
   border: 0.3rem solid #E0F5FF;
@@ -818,6 +907,12 @@ img {
   transform: translate3d(0, 2rem, 0);
   transition: transform .3s, opacity .3s;
   will-change: transform opacity;
+  @include breakpoint($xl-bp) {
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+    padding-right: 2.6rem;
+    padding-left: 0.8rem;
+  }
 }
 
 .prefs-left {
@@ -1049,7 +1144,10 @@ img {
   position: relative;
   overflow: hidden;
   height: 12.6rem;
-
+  @include breakpoint($cos-bp) {
+    padding-left: 0;
+    padding-right: 0;
+  }
   &::before {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='629' height='126' viewBox='0 0 629 126' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='543' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect y='59' width='544' height='3' fill='url(%23paint0_linear_48_2208)'/%3E%3Crect x='543' y='125' width='86' height='1' rx='0.5' fill='%23585858'/%3E%3Crect x='543' y='126' width='126' height='1.00001' rx='0.500003' transform='rotate(-90 543 126)' fill='%23585858'/%3E%3Crect x='539.5' y='56.5' width='8' height='8' rx='2.5' fill='%230A0A0A' stroke='%23585858'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_48_2208' x1='0' y1='59' x2='543.856' y2='69.4814' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232B363A'/%3E%3Cstop offset='1' stop-color='%23585858'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
@@ -1062,6 +1160,9 @@ img {
     top: 50%;
     left: 20.4rem;
     transform: translate3d(0, -50%, 0);
+    @include breakpoint($cos-bp) {
+      left: 0;
+    }
   }
 
   &::after {
@@ -1076,13 +1177,14 @@ img {
     top: 50%;
     right: 20.4rem;
     transform: translate3d(0, -50%, 0);
+    @include breakpoint($cos-bp) {
+      right: 0;
+    }
   }
 }
 
 .tarifs-swiper-wrapper {
   margin-top: 7.2rem;
-  padding-left: 31.2rem;
-  padding-right: 31.2rem;
 }
 
 .tarifs-swiper {
@@ -1216,15 +1318,187 @@ img {
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 2.8rem; /* 200% */
+  line-height: 2.8rem;
+  /* 200% */
   opacity: 0.64;
   margin-top: 0.4rem;
 
-  & + .tarifs-desc {
+  &+.tarifs-desc {
     margin-top: 2.4rem;
   }
 }
 
 .prob {
   margin-top: 9.7rem;
+
+}
+
+.prob-inner {
+  border-radius: 2.4rem;
+  border: 0.1rem solid rgba(176, 227, 252, 0.56);
+  background: rgba(11, 18, 24, 0.24);
+  height: 14rem;
+  box-shadow: 0 0 4rem 0.1rem rgba(176, 227, 252, 0.2), inset 0 0 4rem 0.1rem rgba(176, 227, 252, 0.2);
+
+  padding-left: 4.8rem;
+  padding-right: 5.6rem;
+  padding-top: 1.7rem;
+  padding-bottom: 1.7rem;
+
+  display: flex;
+  @include breakpoint($xl-bp) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.prob-text {
+  color: #D6D6D6;
+  font-family: IBM Plex Sans;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3.6rem;
+  /* 128.571% */
+  max-width: 12.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.prob-days {
+  color: #FFF;
+  text-align: center;
+  font-family: Montserrat Alternates;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.8rem;
+  /* 140% */
+  text-transform: uppercase;
+  padding-left: 4.8rem;
+  margin-left: 4.8rem;
+  position: relative;
+  @include breakpoint($xl-bp) {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  &::before {
+    content: '';
+    background-color: #B0E3FC;
+    opacity: 0.56;
+    height: 6.8rem;
+    width: 0.1rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.prob-7 {
+  color: #FFF;
+  text-align: center;
+  font-family: IBM Plex Sans;
+  font-size: 10rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 10rem;
+  /* 100% */
+}
+
+.prob-day {
+  margin-left: -1.5rem;
+}
+
+.prob-arrows {
+  position: relative;
+  width: 47.5rem;
+  height: 11rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  @include breakpoint($xl-bp) {
+    width: 100%;
+    max-width: 50rem;
+  }
+}
+
+.prob-free {
+  position: absolute;
+  color: #DEFABD;
+  text-align: center;
+  font-family: IBM Plex Sans;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.7rem;
+  /* 96.429% */
+  text-transform: uppercase;
+  width: 100%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  left: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 6rem;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    border-radius: 1.2rem;
+    opacity: 0.2;
+    background: linear-gradient(90deg, rgba(222, 250, 189, 0.00) 0%, #DEFABD 50%, rgba(222, 250, 189, 0.00) 100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.prop-dimg {
+  position: absolute;
+  top: -4.6rem;
+  right: -5rem;
+  width: 8rem;
+  height: 9.4rem;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+}
+
+.prob-wrapper {
+  position: relative;
+  @include breakpoint($xl-bp) {
+    grid-column: 2 span;
+  }
+}
+
+.prob-img-2 {
+  position: absolute;
+  top: -4.5rem;
+  right: -16.5rem;
+  width: 23.4rem;
+  height: 19.7rem;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+}
+
+.prob-btn {
+  margin-left: auto;
+  height: min-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 1.8rem 3.1rem;
+  @include breakpoint($xl-bp) {
+    grid-column: 2 span;
+  }
+}
+
+.xl-p {
+  @include breakpoint($xl-bp) {
+    display: block;
+    margin-top: 1.2rem;
+  }
 }

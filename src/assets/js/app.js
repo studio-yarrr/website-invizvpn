@@ -8,18 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(function () {
       document.fonts.ready.then(function () {
         setTimeout(function () {
-          initCount()
           initArrow()
-        }, 100)
-
+          initCount()
+        }, 200)
         document.documentElement.classList.add('fontsloaded')
       });
     }, 0);
   } else {
     setTimeout(function () {
-      initCount()
       initArrow()
-    }, 100)
+      initCount()
+    }, 200)
     document.documentElement.classList.add('fontsloaded')
   }
 
@@ -273,25 +272,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function initArrow() {
-    const arrowsWrapper = document.querySelector('.arrows-wrapper');
-    const arrows = document.querySelectorAll('.arrow');
-    const wrapperBounds = arrowsWrapper.getBoundingClientRect();
-    // Function to update opacity based on position
-    function updateOpacity(arrow) {
-      const arrowBounds = arrow.getBoundingClientRect();
-      const midPoint = wrapperBounds.left + wrapperBounds.width / 2;
-      const distanceToMid = Math.abs(midPoint - ((arrowBounds.left + arrowBounds.right) / 2 + arrowBounds.width / 2));
-      const maxDistance = wrapperBounds.width / 2;
-      arrow.style.opacity = 1 - distanceToMid / maxDistance;
-    }
-    gsap.to(".arrows-animation", {
-      xPercent: 100,
-      ease: "none",
-      repeat: -1,
-      lazy: true,
-      duration: 30,
-      onUpdate: () => arrows.forEach(updateOpacity) // Update opacity during animation
-    });
+    const arrowsWrapper = document.querySelectorAll('.arrows-wrapper');
+    arrowsWrapper.forEach(el => {
+      const arrows = el.querySelectorAll('.arrow');
+
+      const wrapperBounds = el.getBoundingClientRect();
+      // Function to update opacity based on position
+      function updateOpacity(arrow) {
+        const arrowBounds = arrow.getBoundingClientRect();
+        const midPoint = wrapperBounds.left + wrapperBounds.width / 2;
+        const distanceToMid = Math.abs(midPoint - ((arrowBounds.left + arrowBounds.right) / 2 + arrowBounds.width / 2));
+        const maxDistance = wrapperBounds.width / 2;
+        arrow.style.opacity = 1 - distanceToMid / maxDistance;
+      }
+      const arrowsAnim = el.querySelectorAll('.arrows-animation')
+      if (arrowsAnim.length) {
+        arrowsAnim.forEach(arr => {
+          gsap.to(arr, {
+            xPercent: 100,
+            ease: "none",
+            repeat: -1,
+            lazy: true,
+            duration: 30,
+            onUpdate: () => arrows.forEach(updateOpacity) // Update opacity during animation
+          });
+        })
+      }
+
+    })
+
+
   }
 
 
@@ -306,9 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
       el.appendChild(wrap)
     })
   }
-
-  let comp = false
-
   function initCount() {
     const numbersWrapper = document.querySelector('.numbers-wrapper')
 
@@ -320,15 +327,14 @@ document.addEventListener("DOMContentLoaded", () => {
           const wrap = el.querySelector('.number-wrap');
           const h = 8.4;
           if (wrap) {
+            // wrap.style.setProperty('transform', `translate3d(0, ${'-' + h * number + 'rem'}, 0)`)
             gsap.to(wrap, {
               y: '-' + h * number + 'rem',
               lazy: true,
               duration: 1.5,
               delay: 0.3 + i * 0.1,
               ease: 'elastic',
-              onComplete: () => {
-                comp = true
-              }
+              immediateRender: false,
             })
           }
         })
@@ -494,17 +500,43 @@ document.addEventListener("DOMContentLoaded", () => {
         swiper.classList.add('swiper-no-swiping')
       }
       new Swiper(swiper, {
-        slidesPerView: 3,
+        slidesPerView: 'auto',
+        spaceBetween: 0,
         centeredSlides: true,
         initialSlide: 1,
-        spaceBetween: 20,
+        breakpoints: {
+          // when window width is >= 501px
+          1025: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }
       }) 
     }
-
-
-
-
   }, 0)
+
+  const scrolledObj = document.querySelectorAll('[data-scroll]');
+
+  if (scrolledObj.length) {
+    scrolledObj.forEach(el => {
+      el.addEventListener('click', function () {
+        event.preventDefault()
+        const sc = document.querySelector(this.dataset.scroll)
+        if (sc) {
+          const header = document.querySelector('header');
+          let headerH = null;
+          if (header) {
+            headerH = header.getBoundingClientRect().height;
+          }
+          const yOffset = headerH ? -headerH : -200;
+          const onMedia = xl.matches ? 0 : 50;
+          const y = sc.getBoundingClientRect().top + window.pageYOffset + yOffset - onMedia;
+
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      })
+    })
+  }
 
 
 });
