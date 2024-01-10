@@ -611,24 +611,9 @@
   pointer-events: none;
   transform: translate3d(0, 0, 0);
   will-change: transform;
-
+  box-shadow: 0 0 1rem 0.1rem #A890F1, inset 0 0 1rem 0.1rem #A890F1;
   @include breakpoint($xl-bp) {
     animation: none;
-  }
-
-  &::before {
-    content: '';
-    border-radius: inherit;
-    opacity: 0.4;
-    -webkit-filter: blur(0.8rem);
-    filter: blur(0.8rem);
-    position: absolute;
-    top: -0.6rem;
-    left: -0.6rem;
-    width: calc(100% + 1.2rem);
-    height: calc(100% + 1.2rem);
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
   }
 }
 
@@ -650,10 +635,6 @@
     left: -51rem;
     top: -34rem;
     animation: none;
-  }
-
-  &::before {
-    border: 1.2rem solid #A890F1;
   }
 }
 
@@ -677,11 +658,6 @@
     top: -37.5rem;
     animation: none;
   }
-
-  &::before {
-    border: 1.2rem solid #A890F1;
-    opacity: 0.4;
-  }
 }
 
 .circle-3 {
@@ -704,11 +680,6 @@
     top: -39.5rem;
     animation: none;
   }
-
-  &::before {
-    border: 1.2rem solid #A890F1;
-    opacity: 0.4;
-  }
 }
 
 .circle-4 {
@@ -723,18 +694,6 @@
 
   @include breakpoint($xl-bp) {
     display: none;
-  }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
-
   }
 }
 
@@ -751,17 +710,6 @@
   @include breakpoint($xl-bp) {
     display: none;
   }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
-  }
 }
 
 .circle-6 {
@@ -776,17 +724,6 @@
 
   @include breakpoint($xl-bp) {
     display: none;
-  }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
   }
 }
 
@@ -806,17 +743,6 @@
     top: -45rem;
     left: -53rem;
   }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
-  }
 }
 
 .circle-8 {
@@ -833,17 +759,6 @@
     width: 89.9rem;
     height: 89.9rem;
     top: -43rem;
-  }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
   }
 }
 
@@ -863,17 +778,6 @@
     top: -40rem;
     left: -41rem;
   }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
-  }
 }
 
 .circle-10 {
@@ -891,17 +795,6 @@
     height: 75.7rem;
     top: -37rem;
     left: -37rem;
-  }
-
-  &::before {
-    border: 2rem solid #A890F1;
-    opacity: 0.4;
-    top: -1rem;
-    left: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    -webkit-filter: blur(0.4rem);
-    filter: blur(0.4rem);
   }
 }
 
