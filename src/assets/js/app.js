@@ -80,17 +80,24 @@ document.addEventListener("DOMContentLoaded", () => {
     constructor(menuElement, buttonElement) {
       this.menu = typeof menuElement === "string" ? document.querySelector(menuElement) : menuElement;
       this.button = typeof buttonElement === "string" ? document.querySelector(buttonElement) : buttonElement;
+      this.buttons = this.menu.querySelectorAll('a')
       this.overlay = document.createElement('div');
       this.overlay.hidden = true;
       this._init();
     }
 
     _init() {
+      if (!xl.matches) {
+        return
+      }
       document.body.appendChild(this.overlay);
       this.overlay.classList.add('overlay');
 
       this.overlay.addEventListener('click', this.toggleMenu.bind(this));
       this.button.addEventListener('click', this.toggleMenu.bind(this));
+      this.buttons.forEach(el => {
+        el.addEventListener('click', this.toggleMenu.bind(this));
+      })
     }
 
     toggleMenu() {

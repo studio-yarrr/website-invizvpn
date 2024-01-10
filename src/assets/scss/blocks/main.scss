@@ -565,11 +565,11 @@
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translate3d(0, 0, 0);
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg) translate3d(0, 0, 0);
   }
 }
 
@@ -580,7 +580,7 @@
   border-radius: 100%;
   animation: rotate 3s linear infinite;
   pointer-events: none;
-
+  transform: translate3d(0, 0, 0);
   &::before {
     content: '';
     border-radius: inherit;
