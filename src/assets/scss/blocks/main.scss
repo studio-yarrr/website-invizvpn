@@ -592,6 +592,7 @@
     width: calc(100% + 1.2rem);
     height: calc(100% + 1.2rem);
     transform: translate3d(0, 0, 0);
+    will-change: transform;
   }
 }
 

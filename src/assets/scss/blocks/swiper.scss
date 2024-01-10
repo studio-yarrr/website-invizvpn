@@ -614,6 +614,7 @@
     bottom: 0;
     right: 0;
     filter: blur(50px);
+    will-change: transform;
   }
   .swiper-flip {
     overflow: visible;
