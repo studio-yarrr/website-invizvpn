@@ -6,6 +6,12 @@
   grid-template-columns: 48.3rem 63.5rem;
   justify-content: space-between;
   padding-bottom: 9.6rem;
+  @include breakpoint($cos-bp) {
+    padding-top: 15rem;
+  }
+  @include breakpoint($cus-bp) {
+    padding-top: 12rem;
+  }
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;
