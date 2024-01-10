@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.fonts.ready.then(function () {
         setTimeout(function () {
           initArrow()
-          initCount()
+          !xl.matches && initCount()
         }, 200)
         document.documentElement.classList.add('fontsloaded')
       });
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     setTimeout(function () {
       initArrow()
-      initCount()
+      !xl.matches && initCount()
     }, 200)
     document.documentElement.classList.add('fontsloaded')
   }
@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
       initRotationCards()
     }
   })
+
+  const headerBtn = document.querySelector('.header-right .header-btn')
+  const menuBlock = document.querySelector('.menu-start')
+  if (headerBtn && menuBlock) {
+    menuBlock.appendChild(headerBtn.cloneNode(true))
+  }
 
   function initRotationCards() {
     const rotationCards = document.querySelectorAll(".rotation-card");
@@ -120,10 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
       window.onscroll = function () {
         window.scrollTo(scrollLeft, scrollTop);
       };
+      document.documentElement.classList.add('overflow-hidden')
     }
 
     enableScroll() {
       window.onscroll = function () { };
+      document.documentElement.classList.remove('overflow-hidden')
     }
   }
 
@@ -294,16 +302,33 @@ document.addEventListener("DOMContentLoaded", () => {
             repeat: -1,
             lazy: true,
             duration: 30,
-            onUpdate: () => arrows.forEach(updateOpacity) // Update opacity during animation
+            onUpdate: () => !xl.matches && arrows.forEach(updateOpacity) // Update opacity during animation
           });
         })
       }
 
     })
-
-
   }
 
+  const numberwrap = document.querySelector('.numbers-wrapper')
+  const end = document.querySelector('.scrolltrigger-ends')
+  if (numberwrap && end) {
+    end.appendChild(numberwrap.cloneNode(true))
+
+    setTimeout(() => {
+      const numbers = end.querySelectorAll('.numbers-item')
+      if (numbers.length) {
+        [...numbers].reverse().forEach((el, i) => {
+          const number = el.dataset.count
+          const wrap = el.querySelector('.number-wrap');
+          const h = 7.2;
+          if (wrap) {
+            wrap.style.setProperty('transform', `translate3d(0, ${'-' + h * number + 'rem'}, 0)`)
+          }
+        })
+      }
+    }, 100)
+  }
 
   const numbers = document.querySelectorAll('.numbers-item')
   if (numbers.length) {
@@ -350,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   window.addEventListener('resize', function () {
-    // location.reload()
+    location.reload()
   })
 
   // gsap.timeline({
@@ -387,8 +412,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //   ease: "none"
   // })
 
-  const numbers2 = document.querySelectorAll('.numbers-item')
-  const secondNumbers = document.querySelectorAll('.number-wrap span')
+  const numbers2 = document.querySelectorAll('.main-bot .numbers-item')
+  const secondNumbers = document.querySelectorAll('.main-bot .number-wrap span')
 
   const startColor = "#DEFABD";
   const endColor = '#B0E3FC';
@@ -493,22 +518,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     const swiper = document.querySelector('.tarifs-swiper')
-
+    const pagination = document.querySelector('.tarifs-swiper-wrapper .swiper-pagination')
     if (swiper) {
       const swiperslides = swiper.querySelectorAll('.swiper-slide')
-      if (swiperslides.length <=3) {
+      if (swiperslides.length <=3 && !xl.matches) {
         swiper.classList.add('swiper-no-swiping')
       }
       new Swiper(swiper, {
         slidesPerView: 'auto',
-        spaceBetween: 0,
+        spaceBetween: 20,
         centeredSlides: true,
         initialSlide: 1,
+        pagination: {
+          el: pagination,
+          clickable: true,
+        },
         breakpoints: {
           // when window width is >= 501px
           1025: {
             slidesPerView: 3,
-            spaceBetween: 20,
           },
         }
       }) 

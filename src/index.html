@@ -3,11 +3,11 @@ layout: default
 title: Инвиз VPN
 ---
 
-<section class="main container-3">
+<section class="main container-3" id="main">
 
   <div class="main-bg img-cover">
     <picture>
-      <source srcset="./assets/images/main/main-bg-sm.png" media="(max-width:500px)">
+      <source srcset="./assets/images/main/main-bg-sm.webp" media="(max-width:500px)">
       <source srcset="./assets/images/main/main-bg.webp" media="(max-width:1512px)">
       <img src="./assets/images/main/main-bg-1920.webp" alt="main-bg">
     </picture>
@@ -100,7 +100,10 @@ title: Инвиз VPN
     </div>
 
     <div class="production-bg img-cover">
-      <img class="lazyload" data-src="./assets/images/main/production-bg.webp" alt="production-bg">
+      <picture>
+        <source srcset="./assets/images/main/production-bg-sm.webp" media="(max-width:500px)">
+        <img class="lazyload" data-src="./assets/images/main/production-bg.webp" alt="production-bg">
+      </picture>
     </div>
 
     <div class="circle circle-1"></div>
@@ -111,7 +114,10 @@ title: Инвиз VPN
 <section class="prefs container-4" id="prefs">
   <div class="prefs-block bg-1" data-animonscroll="bottom">
     <div class="prefs-bg img-cover">
-      <img class="lazyload" data-src="./assets/images/prefs/1.png" alt="prefs">
+      <picture>
+        <source srcset="./assets/images/prefs/1-sm.png" media="(max-width:500px)">
+        <img src="./assets/images/prefs/1.png" alt="prefs">
+      </picture>
     </div>
     <div class="prefs-arrow img-contain">
       <img class="lazyload" data-src="./assets/images/prefs/1-arrow.png" alt="arrow">
@@ -139,12 +145,18 @@ title: Инвиз VPN
   </div>
   <div class="prefs-block bg-2" data-animonscroll="bottom">
     <div class="prefs-car img-cover">
-      <img class="lazyload" data-src="./assets/images/prefs/2-car.png" alt="prefs">
+      <picture>
+        <source srcset="./assets/images/prefs/2-car-sm.png" media="(max-width:500px)">
+        <img class="lazyload" data-src="./assets/images/prefs/2-car.png" alt="prefs">
+      </picture>
     </div>
     <div class="prefs-bg img-cover">
-      <img class="lazyload" data-src="./assets/images/prefs/2.png" alt="prefs">
+      <picture>
+        <source srcset="./assets/images/prefs/1-sm.png" media="(max-width:500px)">
+        <img src="./assets/images/prefs/2.png" alt="prefs">
+      </picture>
     </div>
-    <div class="prefs-left">
+    <div class="prefs-left --2">
       <h2 class="prefs-title">
         <span class="prefs-1">Высокая</span>
         <span class="prefs-3">скорость</span>
@@ -152,19 +164,25 @@ title: Инвиз VPN
       <h3 class="text-32 prefs-subtitle-2">Забудьте о замедленной загрузке!</h3>
       <ul class="prefs-list text-14">
         <li class="prefs-item">
-          Используем самые быстрые и передовые технологии и протоколы для подключения к VPN сервисам.</li>
-        <li class="prefs-item">
           Наш быстрый VPN-сервис позволяет вам наслаждаться высокой скоростью интернета, сохраняя при этом безопасность ваших данных.
         </li>
+        <li class="prefs-item">
+          Используем самые быстрые и передовые технологии и протоколы для подключения к VPN сервисам.</li>
       </ul>
     </div>
   </div>
   <div class="prefs-block bg-3" data-animonscroll="bottom">
-    <div class="prefs-space img-contain">
-      <img src="./assets/images/prefs/3-space.png" alt="space">
+    <div class="prefs-space img-cover">
+      <picture>
+        <source srcset="./assets/images/prefs/3-space-sm.png" media="(max-width:500px)">
+        <img src="./assets/images/prefs/3-space.png" alt="space">
+      </picture>
     </div>
     <div class="prefs-bg img-cover">
-      <img src="./assets/images/prefs/1.png" alt="prefs">
+      <picture>
+        <source srcset="./assets/images/prefs/2-sm.png" media="(max-width:500px)">
+        <img src="./assets/images/prefs/1.png" alt="prefs">
+      </picture>
     </div>
 
     <div class="circle circle-4"></div>
@@ -172,7 +190,7 @@ title: Инвиз VPN
     <div class="circle circle-6"></div>
 
     <div class="prefs-last">
-      <h2 class="prefs-title">
+      <h2 class="prefs-title --3">
         <span class="prefs-1">Протокол </span>
         <span class="prefs-4">shadowsocks</span>
       </h2>
@@ -207,7 +225,7 @@ title: Инвиз VPN
           <div class="tarifs-price">₽ 150 <span class="tarifs-date">/ 30 дней</span></div>
           <div class="prefs-close text-24"><span class="prefs-closed">от 360</span> ₽</div>
           <div class="prefs-info">если платить понедельно</div>
-          <div class="tarifs-desc text-14">Оптимальный тариф для серфинга интернета в любое время!</div>
+          <div class="tarifs-desc text-14">Оптимальный тариф <br class="xl-block">для серфинга интернета <br class="xl-block">в любое время!</div>
           <div class="tarifs-rec">Рекомендовано</div>
           <div class="tarifs-wrap"><a href="#" class="btn --white tarifs-btn">telegram bot</a></div>
 
@@ -230,6 +248,7 @@ title: Инвиз VPN
         </div>
       </div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
