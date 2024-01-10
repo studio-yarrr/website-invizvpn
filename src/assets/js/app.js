@@ -382,7 +382,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   window.addEventListener('resize', function () {
-    // location.reload()
+    if (!xl.matches) {
+    location.reload() 
+    }
   })
 
   // gsap.timeline({
