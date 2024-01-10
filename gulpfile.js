@@ -430,7 +430,7 @@ const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
 const make = gulp.series(gulp.parallel(newFile, toEnd));
-const buildNMin = gulp.series(clean, html, css, js, imagesWithoutMin, fonts);
+const buildNMin = gulp.series(clean, html, css, js, images, fonts);
 
 /* Exports Tasks */
 
