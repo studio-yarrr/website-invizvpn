@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   window.addEventListener('resize', function () {
-    location.reload()
+    // location.reload()
   })
 
   // gsap.timeline({
