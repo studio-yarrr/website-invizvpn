@@ -9,9 +9,9 @@
   justify-content: space-between;
   &::before {
     content: '';
-    border-image: 
-    radial-gradient(#0000 calc(71% - var(--b)),var(--grey) calc(72% - var(--b)))
-    49.9%/var(--r);
+    // border-image: 
+    // radial-gradient(#0000 calc(71% - var(--b)),var(--grey) calc(72% - var(--b)))
+    // 49.9%/var(--r);
     position: absolute;
     top: 0;
     left: 0;
@@ -20,6 +20,9 @@
     clip-path: polygon(0 0, 100% 0, 100% 4rem, 0 4rem);
     pointer-events: none;
     z-index: 10;
+    border: 1.2rem solid var(--grey);
+    border-radius: 3rem;
+    border-width: 1.2rem;
   }
 
   &::after {
@@ -56,6 +59,15 @@
     font-size: 1.4rem;
     border-radius: 1.6rem;
   }
+}
+
+.header-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--grey);
+  height: 1.2rem;
 }
 
 .header-left {

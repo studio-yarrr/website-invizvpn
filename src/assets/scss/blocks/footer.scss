@@ -66,17 +66,20 @@
 
   &::before {
     content: '';
-    border-image:
-      radial-gradient(#0000 calc(71% - var(--b)), #273134 calc(72% - var(--b))) 49.9%/var(--r);
+    // border-image:
+    //   radial-gradient(#0000 calc(71% - var(--b)), #273134 calc(72% - var(--b))) 49.9%/var(--r);
     position: absolute;
     bottom: calc(100% - 1.2rem);
     left: 0;
     width: 100%;
     height: 7.6rem;
-    clip-path: polygon(0 0, 100% 0, 100% 4rem, 0 4rem);
+    clip-path: polygon(0 0, 100% 0, 100% 3rem, 0 3rem);
     pointer-events: none;
     z-index: 10;
     transform: rotate(-180deg);
+    border: 1.2rem solid #273134;
+    border-radius: 3rem;
+    border-width: 1.2rem;
     @include breakpoint($xl-bp) {
       content: normal;
     }
@@ -88,7 +91,7 @@
     height: 20rem;
     position: absolute;
     z-index: 10;
-    top: -22.8rem;
+    top: -19.8rem;
     left: 0;
     border-width: 1.2rem;
     border-style: solid;
