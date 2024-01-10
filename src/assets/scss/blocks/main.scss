@@ -630,11 +630,12 @@
   }
 
   @include breakpoint($xl-bp) {
-    width: 80.6rem;
-    height: 79.6rem;
-    left: -51rem;
-    top: -34rem;
-    animation: none;
+    // width: 80.6rem;
+    // height: 79.6rem;
+    // left: -51rem;
+    // top: -34rem;
+    // animation: none;
+    display: none;
   }
 }
 
@@ -652,11 +653,12 @@
   }
 
   @include breakpoint($xl-bp) {
-    width: 88.6rem;
-    height: 87.6rem;
-    left: -56rem;
-    top: -37.5rem;
-    animation: none;
+    // width: 88.6rem;
+    // height: 87.6rem;
+    // left: -56rem;
+    // top: -37.5rem;
+    // animation: none;
+    display: none;
   }
 }
 
@@ -674,11 +676,12 @@
   }
 
   @include breakpoint($xl-bp) {
-    width: 93.6rem;
-    height: 92.6rem;
-    left: -58rem;
-    top: -39.5rem;
-    animation: none;
+    // width: 93.6rem;
+    // height: 92.6rem;
+    // left: -58rem;
+    // top: -39.5rem;
+    // animation: none;
+    display: none;
   }
 }
 
@@ -1926,5 +1929,16 @@ img {
   @include breakpoint($xl-bp) {
     display: block;
     margin-top: 1.2rem;
+  }
+}
+
+.tarifs-circles {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  img {
+    object-position: bottom right;
   }
 }
