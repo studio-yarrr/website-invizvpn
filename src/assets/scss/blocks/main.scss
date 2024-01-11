@@ -623,7 +623,7 @@
   width: 163.0979rem;
   height: 164.0979rem;
   border: 0.3rem solid #E0F5FF;
-  animation: rotate 3s linear infinite;
+  animation: rotate 6s linear infinite;
 
   @include breakpoint($cos-bp) {
     left: -13rem;
@@ -646,7 +646,7 @@
   height: 177.2902rem;
   border: 0.3rem solid #E0F5FF;
   opacity: 0.24;
-  animation: rotate 4s linear infinite;
+  animation: rotate 8s linear infinite;
 
   @include breakpoint($cos-bp) {
     left: -21rem;
@@ -669,7 +669,7 @@
   height: 190.5rem;
   border: 0.3rem solid #E0F5FF;
   opacity: 0.08;
-  animation: rotate 5s linear infinite;
+  animation: rotate 10s linear infinite;
 
   @include breakpoint($cos-bp) {
     left: -26rem;
