@@ -442,6 +442,10 @@
   position: absolute;
   top: 0;
   left: -2.5rem;
+  @include breakpoint($xl-bp) {
+    width: 100%;
+    left: 0;
+}
 }
 
 .arrows-animation {
@@ -1660,6 +1664,8 @@ img {
   &::before {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='82' height='44' viewBox='0 0 82 44' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.00293361 1.3731C0.484364 1.13427 1.02686 1 1.60071 1H77.3814C79.3696 1 80.9814 2.61177 80.9814 4.6V39.4C80.9814 41.3882 79.3696 43 77.3814 43H1.6007C1.02685 43 0.484358 42.8657 0.00292969 42.6269C0.736231 43.4683 1.81578 44 3.01953 44H78.0002C80.2093 44 82.0002 42.2091 82.0002 40V4C82.0002 1.79086 80.2093 0 78.0002 0H3.01953C1.81579 0 0.736236 0.531721 0.00293361 1.3731Z' fill='%23B0E3FC'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 8.2rem;
     height: 4.4rem;
     position: absolute;
@@ -1829,7 +1835,7 @@ img {
 
   @include breakpoint($xl-bp) {
     width: 100%;
-    max-width: 50rem;
+    max-width: 100%;
   }
 }
 

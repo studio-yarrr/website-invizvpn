@@ -533,6 +533,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (swiperslides.length <=3 && !xl.matches) {
         swiper.classList.add('swiper-no-swiping')
       }
+      xl.addEventListener('change', function () {
+        if (xl.matches) {
+          swiper.classList.remove('swiper-no-swiping')
+        }
+      })
       new Swiper(swiper, {
         slidesPerView: 'auto',
         spaceBetween: 20,
