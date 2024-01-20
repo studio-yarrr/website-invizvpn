@@ -14,6 +14,7 @@ const panini = require("panini");
 const imagemin = require("gulp-imagemin");
 const imageop = require('gulp-image-optimization');
 const del = require("del");
+const browserSync = require("browser-sync").create();
 const purgecss = require("gulp-purgecss");
 // const tailwindcss = require("tailwindcss");
 const postcss = require('gulp-postcss');
