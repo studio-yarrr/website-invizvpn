@@ -12,9 +12,9 @@ const rigger = require("gulp-rigger");
 const plumber = require("gulp-plumber");
 const panini = require("panini");
 const imagemin = require("gulp-imagemin");
+const imageop = require('gulp-image-optimization');
 const del = require("del");
-const browserSync = require("browser-sync").create();
-const purgecss = require("gulp-purgecss"); 
+const purgecss = require("gulp-purgecss");
 // const tailwindcss = require("tailwindcss");
 const postcss = require('gulp-postcss');
 const fileInclude = require('gulp-file-include');
@@ -46,9 +46,10 @@ const path = {
     pug: srcPath + "*.pug",
     images:
       [srcPath +
-      "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
-      '!' + srcPath + 'assets/sprite/*.svg', 
-    ],
+        "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
+      // '!' + srcPath + 'assets/images/favicon/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}',
+      '!' + srcPath + 'assets/sprite/*.svg',
+      ],
     fonts: srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}",
     sprites: srcPath + 'assets/images/sprites/*.svg',
   },
@@ -79,16 +80,16 @@ function serve() {
 
 function sprites() {
   return src(path.src.sprites)
-      .pipe(svgSprite({
-              mode: {
-                  stack: {
-                      sprite: "../sprite.svg"
-                  }
-              },
-          }
-      ))
-      .pipe(dest(path.build.sprites))
-      .pipe(browserSync.stream())
+    .pipe(svgSprite({
+      mode: {
+        stack: {
+          sprite: "../sprite.svg"
+        }
+      },
+    }
+    ))
+    .pipe(dest(path.build.sprites))
+    .pipe(browserSync.stream())
 }
 
 function html(cb) {
@@ -121,10 +122,10 @@ function php(cb) {
 }
 
 function pugs(cb) {
-  return src(path.src.pug, {base: srcPath})
-  .pipe(pug())
-  .pipe(dest(path.build.html))
-  .pipe(browserSync.reload({stream: true}))
+  return src(path.src.pug, { base: srcPath })
+    .pipe(pug())
+    .pipe(dest(path.build.html))
+    .pipe(browserSync.reload({ stream: true }))
 
   cb()
 }
@@ -166,8 +167,8 @@ function css(cb) {
 }
 
 function vendorcss(cb) {
-  return src(path.src.vendorcss, {base: srcPath + "assets/js/components/"})
-  .pipe(dest(path.build.vendorcss))
+  return src(path.src.vendorcss, { base: srcPath + "assets/js/components/" })
+    .pipe(dest(path.build.vendorcss))
 }
 
 function cleanCss(cb) {
@@ -269,6 +270,11 @@ function images(cb) {
         }),
       ])
     )
+    // .pipe(imageop({
+    //   optimizationLevel: 5,
+    //   progressive: true,
+    //   interlaced: true
+    // }))
     .pipe(dest(path.build.images))
     .pipe(browserSync.reload({ stream: true }));
 
@@ -424,8 +430,8 @@ function imagesWithoutMin() {
     .pipe(browserSync.reload({ stream: true }));
 }
 
-const buildOld = gulp.series(clean, gulp.parallel(html,php, css, vendorcss, js, images, fonts));
-const start = gulp.series(cleanWithoutImg, gulp.parallel(html,php, css, js, fonts, sprites));
+const buildOld = gulp.series(clean, gulp.parallel(html, php, css, vendorcss, js, images, fonts));
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html, php, css, js, fonts, sprites));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
